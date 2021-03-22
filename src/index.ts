@@ -6,6 +6,8 @@ export function actionTypesFactory<T extends string[]>(
       SUCCEEDED: string;
       FAILED: string;
       REQUEST: string;
+      BEGIN: string;
+      CANCEL: string;
     };
   };
 
@@ -17,6 +19,8 @@ export function actionTypesFactory(
     SUCCEEDED: string;
     FAILED: string;
     REQUEST: string;
+    BEGIN: string;
+    CANCEL: string;
   };
 } {
   const prefixString = prefix.length ? `${prefix}/` : "";
@@ -27,7 +31,9 @@ export function actionTypesFactory(
       [type]: {
         SUCCEEDED: `${prefixString}${type}_SUCCEEDED`,
         FAILED: `${prefixString}${type}_FAILED`,
-        REQUEST: `${prefixString}${type}_REQUEST`
+        REQUEST: `${prefixString}${type}_REQUEST`,
+        BEGIN: `${prefixString}${type}_BEGIN`,
+        CANCEL: `${prefixString}${type}_CANCEL`,
       },
     }),
     {}
