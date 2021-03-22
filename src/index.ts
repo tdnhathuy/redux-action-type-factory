@@ -5,6 +5,7 @@ export function actionTypesFactory<T extends string[]>(
     readonly [K in T[number]]: {
       SUCCEEDED: string;
       FAILED: string;
+      REQUEST: string;
     };
   };
 
@@ -15,6 +16,7 @@ export function actionTypesFactory(
   readonly [k: string]: {
     SUCCEEDED: string;
     FAILED: string;
+    REQUEST: string;
   };
 } {
   const prefixString = prefix.length ? `${prefix}/` : "";
@@ -25,6 +27,7 @@ export function actionTypesFactory(
       [type]: {
         SUCCEEDED: `${prefixString}${type}_SUCCEEDED`,
         FAILED: `${prefixString}${type}_FAILED`,
+        REQUEST: `${prefixString}${type}_REQUEST`
       },
     }),
     {}
