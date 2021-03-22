@@ -27,13 +27,7 @@ export function actionTypesFactory(
   return actionType.reduce(
     (acc, type) => ({
       ...acc,
-      [type]: {
-        default: `${prefixString}${type}`,
-        begin: `${prefixString}${type}_BEGIN`,
-        succeeded: `${prefixString}${type}_SUCCEEDED`,
-        failed: `${prefixString}${type}_FAILED`,
-        cancelled: `${prefixString}${type}_CANCELLED`,
-      },
+      [type]: `${prefixString}${type}`,
     }),
     {}
   );
