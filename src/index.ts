@@ -2,19 +2,19 @@ export function actionTypesFactory<T extends string[]>(
   prefix: string,
   ...actionType: T
 ): {
-  readonly [K in T[number]]: {
-    _SUCCEEDED: string;
-    _FAILED: string;
+    readonly [K in T[number]]: {
+      SUCCEEDED: string;
+      FAILED: string;
+    };
   };
-};
 
 export function actionTypesFactory(
   prefix: string,
   ...actionType: string[]
 ): {
   readonly [k: string]: {
-    _SUCCEEDED: string;
-    _FAILED: string;
+    SUCCEEDED: string;
+    FAILED: string;
   };
 } {
   const prefixString = prefix.length ? `${prefix}/` : "";
@@ -22,8 +22,10 @@ export function actionTypesFactory(
     (acc, type) => ({
       ...acc,
       [type]: `${prefixString}${type}`,
-      [type+'_SUCCEEDED']: `${prefixString}${type}_SUCCEEDED`,
-      [type+'_FAILED']: `${prefixString}${type}`,
+      [type]: {
+        SUCCEEDED: `${prefixString}${type}_SUCCEEDED`,
+        FAILED: `${prefixString}${type}_FAILED`,
+      },
     }),
     {}
   );
@@ -32,8 +34,8 @@ export function actionTypesFactory(
 export function dictionaryFactory<T extends string[]>(
   ...args: T
 ): {
-  readonly [K in T[number]]: K;
-};
+    readonly [K in T[number]]: K;
+  };
 
 export function dictionaryFactory(
   ...args: string[]
