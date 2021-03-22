@@ -1,33 +1,19 @@
 export function actionTypesFactory<T extends string[]>(
   prefix: string,
   ...actionType: T
-): {
-  readonly [K in T[number]]: {
-    default: K;
-    begin: string;
-    succeeded: string;
-    failed: string;
-    cancelled: string;
-  };
-};
+)
 
 export function actionTypesFactory(
   prefix: string,
   ...actionType: string[]
-): {
-  readonly [k: string]: {
-    default: string;
-    begin: string;
-    succeeded: string;
-    failed: string;
-    cancelled: string;
-  };
-} {
+) {
   const prefixString = prefix.length ? `${prefix}/` : "";
   return actionType.reduce(
     (acc, type) => ({
       ...acc,
       [type]: `${prefixString}${type}`,
+      [type+'_SUCCEEDED']: `${prefixString}${type}_SUCCEEDED`,
+      [type+'_FAILED']: `${prefixString}${type}_FAILED`,
     }),
     {}
   );
